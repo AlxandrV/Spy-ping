@@ -1,5 +1,7 @@
 <?php
-include_once 'IRequest.php';
+// include_once 'IRequest.php';
+namespace App\Router;
+use App\Router\IRequest;
 
 class Request implements IRequest
 {

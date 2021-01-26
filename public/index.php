@@ -1,11 +1,18 @@
 <?php
-require dirname(__FILE__).'/../asset/router/Router.php';
-require dirname(__FILE__).'/../asset/router/Request.php';
+use App\Autoloader;
+use App\Router\Router;
+use App\Router\Request;
+use App\Twig\Twig;
+
+require dirname(__FILE__).'/../asset/Autoloader.php';
+Autoloader::register();
 
 $router = new Router(new Request);
 
 $router->get('/', function() {
-    echo 'ça fonctionne';
+    $twig = new Twig('base.html.twig');
+    $twig->render();
+    // echo 'ça fonctionne';
 });
 
 $router->get('/test', function() {
