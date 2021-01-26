@@ -3,6 +3,7 @@ use App\Autoloader;
 use App\Router\Router;
 use App\Router\Request;
 use App\Twig\Twig;
+use App\Connexion\Connexion;
 
 require dirname(__FILE__).'/../asset/Autoloader.php';
 Autoloader::register();
