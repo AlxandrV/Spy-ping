@@ -42,10 +42,15 @@ class Connexion {
 		}
 
 		$stmt->execute();
-
-		return $stmt->fetchAll();
-		$stmt->closeCursor();
-		$stmt=NULL;
+		if(substr($sql, 0, 11) == "INSERT INTO"){
+			$stmt->closeCursor();
+			$stmt = NULL;	
+		}else{
+			$result = $stmt->fetchAll();
+			$stmt->closeCursor();
+			$stmt = NULL;
+			return $result;			
+		}
 	}
 
 
