@@ -29,7 +29,7 @@ class User
     /**
      * Set the value of _validated
      */ 
-    public function set_validated(bool $validated)
+    private function set_validated(bool $validated)
     {
         $this->_validated = $validated;
     }
@@ -37,7 +37,7 @@ class User
     /**
      * Set the value of _password
      */ 
-    public function set_password(string $password)
+    private function set_password(string $password)
     {
         $password = htmlspecialchars(filter_var($password, FILTER_SANITIZE_STRING));
         $this->_password = password_hash($password, PASSWORD_DEFAULT);
@@ -46,10 +46,10 @@ class User
     /**
      * Set the value of _email
      */ 
-    public function set_email(string $email)
+    private function set_email(string $email)
     {
         $email = htmlspecialchars(filter_var($email, FILTER_SANITIZE_EMAIL));
-        $email = (!filter_var((strlen($email) <= 320), FILTER_VALIDATE_EMAIL)) ? false : $email;
+        $email = (!filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) <= 320) ? false : $email;
         if($email !== false) {
             $this->_email = $email;
         }
@@ -58,10 +58,10 @@ class User
     /**
      * Set the value of _name
      */ 
-    public function set_name(string $name)
+    private function set_name(string $name)
     {
         $name = htmlspecialchars(filter_var($name, FILTER_SANITIZE_STRING));
-        $name = (strlen($name) <= 60) ? false : $name;
+        $name = (strlen($name) <= 60) ? $name : false;
         if($name !== false) {
             $this->_name = $name;            
         }
@@ -70,8 +70,48 @@ class User
     /**
      * Set the value of _id
      */ 
-    public function set_id(int $id)
+    private function set_id(int $id)
     {
         $this->_id = $id;
+    }
+
+    /**
+     * Get the value of _id
+     */ 
+    public function get_id()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Get the value of _name
+     */ 
+    public function get_name()
+    {
+        return $this->_name;
+    }
+
+    /**
+     * Get the value of _email
+     */ 
+    public function get_email()
+    {
+        return $this->_email;
+    }
+
+    /**
+     * Get the value of _password
+     */ 
+    public function get_password()
+    {
+        return $this->_password;
+    }
+
+    /**
+     * Get the value of _validated
+     */ 
+    public function get_validated()
+    {
+        return $this->_validated;
     }
 }

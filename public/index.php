@@ -26,6 +26,6 @@ $router->post('/add-user', function() {
     // echo 'ça marche';
     // var_dump($_POST);
     $user = new User($_POST);
-    // $add = UserManager::addUser($_POST);
     unset($_POST);
+    $add = UserManager::addUser($user);
 });

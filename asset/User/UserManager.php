@@ -8,7 +8,10 @@ class UserManager
 {
     static function addUser(User $user)
     {
-        var_dump($_POST);
+        $name = $user->get_name();
+        $email = $user->get_email();
+        $password = $user->get_password();
+        // var_dump($name, $email, $password);
     }
 
     static function deleteUser(User $user)
