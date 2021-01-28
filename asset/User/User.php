@@ -39,7 +39,7 @@ class User
      */ 
     public function set_password(string $password)
     {
-        $this->_password = $password;
+        $this->_password = password_hash(htmlspecialchars($password), PASSWORD_DEFAULT);
     }
 
     /**
@@ -47,7 +47,12 @@ class User
      */ 
     public function set_email(string $email)
     {
-        $this->_email = $email;
+        $email = (strlen(htmlspecialchars($email)) <= 320) ? "Adresse email invalide" : htmlspecialchars($email);
+        if($email !== "Adresse email invalide") {
+            $this->_email = $email;
+        }else{
+            return $email;
+        }
     }
 
     /**
@@ -55,7 +60,12 @@ class User
      */ 
     public function set_name(string $name)
     {
-        $this->_name = $name;
+        $name = (strlen(htmlspecialchars($name)) <= 60) ? "Nom d'utilisateur invalide" : htmlspecialchars($name);
+        if($name !== "Nom d'utilisateur invalide") {
+            $this->_name = $name;            
+        }else{
+            return $name;
+        }
     }
 
     /**
