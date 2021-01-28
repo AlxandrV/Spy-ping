@@ -13,6 +13,8 @@ class UserManager
         $password = $user->get_password();
 
         $connexion = new Connexion();
+
+        // If table "user" not exist, create table
         $existTable = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'user' AND TABLE_SCHEMA = 'spyping'";
         $req = $connexion->query($existTable);
 
@@ -30,6 +32,7 @@ class UserManager
             $req = $connexion->query($createUserTable);        
         }
 
+        // Add new user in table
         $addUser = "INSERT INTO user(name, email, password, validated) VALUES (:name, :email, :password, :bool)";
         $params = [
             ['name', $name, \PDO::PARAM_STR],
@@ -39,9 +42,18 @@ class UserManager
         ];
         $req = $connexion->query($addUser, $params);
 
+        // Return id of the last user inserted
         $lastId = "SELECT id FROM user ORDER BY id DESC LIMIT 1";
         $req = $connexion->query($lastId);
-        var_dump($req);
+        $id = (int) $req[0]->id;
+
+        $dataHydrate = [
+            "id" => $id,
+            "validated" => false
+        ];
+
+        // Hydrate user
+        $user->hydrate($dataHydrate);
     }
 
     static function deleteUser(User $user)
