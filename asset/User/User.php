@@ -107,7 +107,7 @@ class User
     /**
      * Get the value of _id
      * 
-     * @return $this->_id
+     * @return int $this->_id
      */ 
     public function get_id()
     {
@@ -117,7 +117,7 @@ class User
     /**
      * Get the value of _name
      * 
-     * @return $this->_name
+     * @return string $this->_name
      */ 
     public function get_name()
     {

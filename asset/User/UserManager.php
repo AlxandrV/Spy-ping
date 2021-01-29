@@ -61,6 +61,29 @@ class UserManager
         $user->hydrate($dataHydrate);
     }
 
+    /**
+     * Verifcation user exist
+     * 
+     * @param object $user
+     * @return bool $bool
+     */
+    static function existUser(User $user)
+    {
+        $email = $user->get_email();
+
+        $connexion = new Connexion();
+
+        $query = "SELECT email FROM user WHERE email = :email";
+        $params = [
+            ['email', $email, \PDO::PARAM_STR]
+        ];
+
+        $exist = $connexion->query($query, $params);
+        $bool = (empty($exist)) ? false : true;
+
+        return $bool;
+    }
+
     static function deleteUser(User $user)
     {
         

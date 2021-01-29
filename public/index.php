@@ -17,13 +17,18 @@ $router->get('/', function() {
     $twig->render();
 });
 
-$router->get('/test', function() {
-    echo 'page test';
+$router->post('/test', function() {
+    $user = new User($_POST);
 });
 
 // Add new user
 $router->post('/add-user', function() {
     $user = new User($_POST);
     unset($_POST);
-    UserManager::addUser($user);
+    $exist = UserManager::existUser($user);
+    if($exist === false) {
+        UserManager::addUser($user);
+    }else{
+        echo "l'utilisateur existe déjà";
+    }
 });
