@@ -3,17 +3,36 @@ namespace App\User;
 
 class User
 {
+    /**
+     * Properties
+     * 
+     * @var int $_id
+     * @var string $_name
+     * @var string $_email
+     * @var string $_password
+     * @var bool $_validated
+     */
     private $_id;
     private $_name;
     private $_email;
     private $_password;
     private $_validated;
 
+    /**
+     * Construct call function hydrate
+     * 
+     * @param array $data
+     */
     public function __construct(array $data)
     {
         $this->hydrate($data);
     }
     
+    /**
+     * Hydrate call for each setter exist in @param
+     * 
+     * @param array $data
+     */
     public function hydrate(array $data)
     {
         foreach ($data as $key => $value)
@@ -28,6 +47,8 @@ class User
 
     /**
      * Set the value of _validated
+     * 
+     * @param bool $validated
      */ 
     private function set_validated(bool $validated)
     {
@@ -36,6 +57,8 @@ class User
 
     /**
      * Set the value of _password
+     * 
+     * @param string $password
      */ 
     private function set_password(string $password)
     {
@@ -45,6 +68,8 @@ class User
 
     /**
      * Set the value of _email
+     * 
+     * @param string $email
      */ 
     private function set_email(string $email)
     {
@@ -57,6 +82,8 @@ class User
 
     /**
      * Set the value of _name
+     * 
+     * @param string $name
      */ 
     private function set_name(string $name)
     {
@@ -69,6 +96,8 @@ class User
 
     /**
      * Set the value of _id
+     * 
+     * @param int $id
      */ 
     private function set_id(int $id)
     {
@@ -77,6 +106,8 @@ class User
 
     /**
      * Get the value of _id
+     * 
+     * @return $this->_id
      */ 
     public function get_id()
     {
@@ -85,6 +116,8 @@ class User
 
     /**
      * Get the value of _name
+     * 
+     * @return $this->_name
      */ 
     public function get_name()
     {
@@ -93,6 +126,8 @@ class User
 
     /**
      * Get the value of _email
+     * 
+     * @return string $this->_name
      */ 
     public function get_email()
     {
@@ -101,6 +136,8 @@ class User
 
     /**
      * Get the value of _password
+     * 
+     * @return string $this->_password
      */ 
     public function get_password()
     {
@@ -109,6 +146,8 @@ class User
 
     /**
      * Get the value of _validated
+     * 
+     * @return bool $this->_validated
      */ 
     public function get_validated()
     {

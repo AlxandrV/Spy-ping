@@ -15,17 +15,15 @@ $router = new Router(new Request);
 $router->get('/', function() {
     $twig = new Twig('base.html.twig');
     $twig->render();
-    // echo 'ça fonctionne';
 });
 
 $router->get('/test', function() {
     echo 'page test';
 });
 
+// Add new user
 $router->post('/add-user', function() {
-    // echo 'ça marche';
-    // var_dump($_POST);
     $user = new User($_POST);
     unset($_POST);
-    $add = UserManager::addUser($user);
+    UserManager::addUser($user);
 });

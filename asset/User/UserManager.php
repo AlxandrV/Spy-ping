@@ -6,6 +6,11 @@ use App\User\User;
 
 class UserManager
 {
+    /**
+     * Add new user in database
+     * 
+     * @param object $user
+     */
     static function addUser(User $user)
     {
         $name = $user->get_name();
