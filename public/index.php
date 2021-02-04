@@ -15,8 +15,12 @@ Autoloader::register();
 $router = new Router(new Request);
 
 $router->get('/', function() {
+    $session = (isset($_SESSION['user']) && $_SESSION['user'] === true) ? true : false;
+
     $twig = new Twig('base.html.twig');
-    $twig->render();
+    $twig->render([
+        'session' => $session
+    ]);
 });
 
 $router->post('/test', function() {
