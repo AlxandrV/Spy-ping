@@ -47,9 +47,7 @@ $router->post('/connexion-account', function() {
     $exist = UserManager::existUser($user);
     if($exist === true) {
         UserManager::connexionUser($user);
-    }else{
-        echo "L'utilisateur n'existe pas";
     }
-    
-    // Return bool $_SESSION['user']
+    header("Location: /");
+    exit;
 });
