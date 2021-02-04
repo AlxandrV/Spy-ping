@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 use App\Autoloader;
 use App\Router\Router;
 use App\Router\Request;
@@ -25,10 +27,25 @@ $router->post('/test', function() {
 $router->post('/add-user', function() {
     $user = new User($_POST);
     unset($_POST);
+
     $exist = UserManager::existUser($user);
     if($exist === false) {
         UserManager::addUser($user);
     }else{
         echo "l'utilisateur existe déjà";
     }
+});
+
+// Connexion user account
+$router->post('/connexion-account', function() {
+    $user = new User($_POST);
+
+    $exist = UserManager::existUser($user);
+    if($exist === true) {
+        UserManager::connexionUser($user);
+    }else{
+        echo "L'utilisateur n'existe pas";
+    }
+    
+    // Return bool $_SESSION['user']
 });

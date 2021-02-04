@@ -59,6 +59,8 @@ class UserManager
 
         // Hydrate user
         $user->hydrate($dataHydrate);
+
+        $connexion = null;
     }
 
     /**
@@ -81,6 +83,8 @@ class UserManager
         $exist = $connexion->query($query, $params);
         $bool = (empty($exist)) ? false : true;
 
+        $connexion = null;
+
         return $bool;
     }
 
@@ -94,9 +98,37 @@ class UserManager
         
     }
 
-    static function getUser(string $email, string $password)
+    /**
+     * Connexion to account user
+     * 
+     * @param object $user
+     * @return array $_SESSION
+     */
+    static function connexionUser(User $user)
     {
-        
+        $email = $user->get_email();
+        $password = $user->get_password();
+
+        $connexion = new Connexion();
+
+        $query = "SELECT * FROM user WHERE email = :email";
+        $params = [
+            ['email', $email, \PDO::PARAM_STR]
+        ];
+
+        $informationUser = $connexion->query($query, $params);
+        if(password_verify($_POST['password'], $informationUser[0]->password)) {
+            $arrayhydrate = [];
+            foreach($informationUser[0] as $key => $value) {
+                $arrayhydrate[$key] = $value;
+            }
+            $user->hydrate($arrayhydrate);
+
+            $_SESSION['user'] = true;
+        }else{
+            $_SESSION['user'] = false;
+        }
+        $connexion = null;
     }
 
 }
