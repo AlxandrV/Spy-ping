@@ -2,3 +2,10 @@
 .d-flex{ display: flex; }
 .just-between{ justify-content: space-between; }
 .flex-column{ flex-direction: column; }
+
+// Error
+.error{
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: red;
+}

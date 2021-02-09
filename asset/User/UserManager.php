@@ -107,7 +107,6 @@ class UserManager
     static function connexionUser(User $user)
     {
         $email = $user->get_email();
-        $password = $user->get_password();
 
         $connexion = new Connexion();
 

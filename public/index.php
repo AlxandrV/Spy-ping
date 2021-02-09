@@ -45,9 +45,13 @@ $router->post('/connexion-account', function() {
     $user = new User($_POST);
 
     $exist = UserManager::existUser($user);
-    if($exist === true) {
-        UserManager::connexionUser($user);
-    }
-    header("Location: /");
-    exit;
+    $validate = ($exist === true) ? true : false;
+    // if($exist === true) {
+    //     UserManager::connexionUser($user);
+    // }else{
+
+    // }
+    return json_encode($validate);
+    // header("Location: /");
+    // exit;
 });

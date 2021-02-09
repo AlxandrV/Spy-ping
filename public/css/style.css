@@ -23,6 +23,12 @@ a {
   flex-direction: column;
 }
 
+.error {
+  box-sizing: border-box;
+  padding: 5px;
+  background-color: red;
+}
+
 #login {
   position: relative;
   top: 50vh;
