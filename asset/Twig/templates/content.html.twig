@@ -1,5 +1,5 @@
-{% if session == true %}
-    <p>la session fonctionne</p>
+{% if session == true and id != false %}
+    {% include "/content/scrapping.html.twig" %}
 {% else %}
     {% include "/content/login.html.twig" %}
 {% endif %}

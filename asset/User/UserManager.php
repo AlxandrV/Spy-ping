@@ -124,6 +124,7 @@ class UserManager
             $user->hydrate($arrayhydrate);
 
             $_SESSION['user'] = true;
+            $_SESSION['id'] = $user->get_id();
         }else{
             $_SESSION['user'] = false;
         }

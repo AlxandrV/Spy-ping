@@ -3,9 +3,20 @@
 .just-between{ justify-content: space-between; }
 .flex-column{ flex-direction: column; }
 
+// Hidden
+.hidden{ display: none; }
+
 // Error
 .error{
+    position: absolute;
+    top: 50px;
+    left: 50px;
     box-sizing: border-box;
-    padding: 5px;
-    background-color: red;
+    padding: 15px;
+    width: max-content;
+    border-radius: 3px;
+
+    &.false{ background-color: red; }
+
+    &.true{ background-color: green; }
 }

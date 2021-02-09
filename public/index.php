@@ -16,10 +16,12 @@ $router = new Router(new Request);
 
 $router->get('/', function() {
     $session = (isset($_SESSION['user']) && $_SESSION['user'] === true) ? true : false;
+    $id = (isset($_SESSION['id'])) ? $_SESSION['id'] : false;
 
     $twig = new Twig('base.html.twig');
     $twig->render([
-        'session' => $session
+        'session' => $session,
+        'id' => $id
     ]);
 });
 
@@ -35,9 +37,8 @@ $router->post('/add-user', function() {
     $exist = UserManager::existUser($user);
     if($exist === false) {
         UserManager::addUser($user);
-    }else{
-        echo "l'utilisateur existe déjà";
     }
+    return json_encode($exist);
 });
 
 // Connexion user account
@@ -46,12 +47,13 @@ $router->post('/connexion-account', function() {
 
     $exist = UserManager::existUser($user);
     $validate = ($exist === true) ? true : false;
-    // if($exist === true) {
-    //     UserManager::connexionUser($user);
-    // }else{
-
-    // }
+    if($exist === true) {
+        UserManager::connexionUser($user);
+    }
     return json_encode($validate);
-    // header("Location: /");
-    // exit;
+});
+
+$router->get('/destroy', function() {
+    session_destroy();
+    header("Location: /");
 });
