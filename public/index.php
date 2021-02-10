@@ -33,11 +33,16 @@ $router->get('/data', function() {
     $session = (isset($_SESSION['user']) && $_SESSION['user'] === true) ? true : false;
     $id = (isset($_SESSION['id'])) ? $_SESSION['id'] : false;
 
+    
     if($session === true && $id !== false) {
+
+        $listExtraction = ExtractionManager::listExtraction($id);
+
         $twig = new Twig('base.html.twig');
         $twig->render([
             'session' => $session,
-            'id' => $id
+            'id' => $id,
+            'listExtraction' => $listExtraction
         ]); 
     }else{
         header('Location: /');
@@ -46,6 +51,16 @@ $router->get('/data', function() {
 
 $router->post('/test', function() {
     $user = new User($_POST);
+});
+
+// Add new extraction
+$router->post('/add-extraction', function() {
+    if(isset($_SESSION['id'])) {
+        var_dump($_POST);
+        // $user = new User(["id" => $_SESSION['id']]);
+        // $extraction = new Exception(["url" => ])
+        // ExtractionManager::addExtraction($user);
+    }
 });
 
 // Add new user
