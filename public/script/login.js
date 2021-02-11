@@ -4,6 +4,7 @@ let formRegistre = document.getElementById("registre");
 let divError = document.getElementsByClassName("error")[0];
 
 // functions _____________________________
+// Ajax
 function xhr(option){
 
     return new Promise(function(resolve) {

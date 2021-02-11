@@ -56,10 +56,9 @@ $router->post('/test', function() {
 // Add new extraction
 $router->post('/add-extraction', function() {
     if(isset($_SESSION['id'])) {
-        var_dump($_POST);
-        // $user = new User(["id" => $_SESSION['id']]);
-        // $extraction = new Exception(["url" => ])
-        // ExtractionManager::addExtraction($user);
+        $user = new User(["id" => $_SESSION['id']]);
+        $extraction = new Extraction(["url" => $_POST['urlExtract']]);
+        ExtractionManager::addExtraction($extraction, $user);
     }
 });
 

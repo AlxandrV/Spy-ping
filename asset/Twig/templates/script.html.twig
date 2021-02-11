@@ -1,1 +1,5 @@
-<script src="/public/script/login.js"></script>
+{% if session == true and id != false %}
+    <script src="/public/script/data.js"></script>
+{% else %}
+    <script src="/public/script/login.js"></script>
+{% endif %}

@@ -62,8 +62,7 @@ class Extraction
      */ 
     private function set_url(string $url)
     {
-        $password = htmlspecialchars(filter_var($url, FILTER_VALIDATE_URL));
-        $this->_password = password_hash($password, PASSWORD_DEFAULT);
+        $this->_url = htmlspecialchars(filter_var($url, FILTER_VALIDATE_URL));
     }
 
     /**
