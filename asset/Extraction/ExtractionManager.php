@@ -20,6 +20,7 @@ class ExtractionManager
 
         $connexion = new Connexion();
 
+        // If table "extraction" not exist, create table
         $existTable = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'extraction' AND TABLE_SCHEMA = 'spyping'";
         $req = $connexion->query($existTable);
 
@@ -44,7 +45,7 @@ class ExtractionManager
             ['url', $urlExtraction, \PDO::PARAM_STR],
         ];
         $req = $connexion->query($addExtraction, $params);
-        
+
         // Return id of the last extraction inserted
         $lastId = "SELECT id FROM extraction ORDER BY id DESC LIMIT 1";
         $req = $connexion->query($lastId);
